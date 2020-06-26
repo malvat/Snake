@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Snake Game</title>
+	<script src="movement.js"></script>
+	<link rel="stylesheet" href="graphics.css">
+</head>
+<body>
+	<!-- heading snake  -->
+	<div id="title">
+		SNAKE
+	</div>
+
+	<!-- some important information  -->
+	<div id="information"> 
+			Snake is the common name for a video game concept where the player maneuvers a line which grows in length, with the line itself being a primary obstacle. The concept originated in the 1976 arcade game Blockade, and the ease of implementing Snake has led to hundreds of versions (some of which have the word snake or worm in the title) for many platforms. After a variant was preloaded on Nokia mobile phones in 1998, there was a resurgence of interest in the snake concept as it found a larger audience. There are over 300 Snake-like games for iOS alone.
+		</br>
+		<span style="color: #e57373;">Note: Use W, A, S, D to move and R to restart after game is finished. </span>
+	</div>
+
+		<!-- playboard for the snake  -->
+		<canvas id='playboard' tabindex="0" height="600" width="400">
+
+		</canvas>
+
+	<div id="gameover"> 
+		Game Over
+	</div>
+
+	<button id="butt" onclick='onClickReset()'>
+		RESET
+	</button>
+
+	<!-- score board for showing the score  -->
+	<div id="scoreboard">
+		Score &rarr; 0
+		</br>
+		Length &rarr; 3
+	</div>
+</body>
+</html>
