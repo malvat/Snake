@@ -11,6 +11,8 @@ body {
 #playboard {
     position: absolute;
     right: 12%;
+    top: 12%;
+    bottom: 12%;
     background-color: #505050;
 }
 
@@ -49,16 +51,29 @@ body {
     position: absolute;
     left: 20%;
     top: 8%;
+    letter-spacing: 6px;
+    animation: title-animation 1s forwards;
+}
+
+@keyframes title-animation {
+    0% {
+        transform: translateX(-200%);
+    }
+    100% {
+        transform: translateX(0%);
+    }
 }
 
 #information {
-    font-size: 25px;
-    font-family: "fonts";
+    font-size: 20px;
+    font-family: 'Roboto', sans-serif;
     color: white;
     position: absolute;
     top: 30%;
     width: 40%;
     left: 5%;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 300;
 }
 
 #butt {
@@ -72,6 +87,12 @@ body {
     position: absolute;
     left: 22%;
     top: 82%;
+    cursor: pointer;
+    transition: border 0.2s;
+}
+
+#butt:hover {
+    border: 1px solid #9575cd;
 }
 
 #scoreboard{
@@ -80,5 +101,21 @@ body {
     font-size: 32px;
     position: absolute;
     right: 2%;
-    top: 10%;
+    top: 14%;
+}
+
+#play {
+    position: absolute;
+    right: 30%;
+    left: 75%;
+    bottom: 7%;
+    background: transparent;
+    border: 1px solid white;
+    color: white;
+    padding: 10px 25px;
+    cursor: pointer;
+}
+
+#play:hover {
+    border: 1px solid #9575cd;
 }

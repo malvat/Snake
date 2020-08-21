@@ -5,9 +5,14 @@ var cols = 30;          // height
 var direction = 0; // 0 right 1 down 2 left 3 up
 var snakeHead = null;   
 var food = null;
+var bgaudio = new Audio("./audio/background.mp3"); 
+var eataudio = new Audio("./audio/eat.mp3");
+var gameoveraudio = new Audio("./audio/gameover.mp3");
+
 // if game is finished or not
 var isGameFinished = false;
-var speed = 6;
+var gameStarted = false;
+var speed = 8;
 var score = 0;
 
 class snakeElement {
@@ -76,22 +81,10 @@ function followSnake() {
     }
 }
 
-/**
- * starting game when website has loaded
- */
 window.onload = function() {
-    initializePlayboard();
-    snakeHead = new snakeElement(5, 10);
-    snake.push(snakeHead);
-    s = new snakeElement(4,10);
-    snake.push(s);
-    s = new snakeElement(3,10);
-    snake.push(s);
     canvas = document.getElementById('playboard');
     canvas.focus();
     ctx = canvas.getContext("2d");
-
-    game = setInterval(loop, 1000/speed);
     canvas.addEventListener("keydown", function(e) {
         if(e.keyCode == 68 && direction != 2) {
             direction = 0;
@@ -110,10 +103,30 @@ window.onload = function() {
             if(e.keyCode == 82) {
                 document.location.reload();
             }
+        } else if(!gameStarted) {
+            if(e.keyCode == 32) {
+                startGame();
+            }
         }
-        
     });
+}
 
+/**
+ * starting game when website has loaded
+ */
+function startGame() {
+    gameStarted = true;
+    initializePlayboard();
+    bgaudio.volume = 0.5;
+    document.getElementById('play').style.visibility = "hidden";
+    bgaudio.play();
+    snakeHead = new snakeElement(5, 10);
+    snake.push(snakeHead);
+    s = new snakeElement(4,10);
+    snake.push(s);
+    s = new snakeElement(3,10);
+    snake.push(s);
+    game = setInterval(loop, 1000/speed);
     puttingFood();
 }
 
@@ -159,6 +172,7 @@ function foodEaten() {
     if(snake[0].x == food.x && snake[0].y == food.y) {
         snake.push(food);
         puttingFood();
+        eataudio.play();
         score+=10;
     }
 }
@@ -180,6 +194,12 @@ function gameover() {
         clearInterval(game);
         isGameFinished = true;
         document.getElementById('gameover').style.opacity = 1;
+    }
+    // play the gameover sound
+    if(isGameFinished) {
+        gameoveraudio.volume = 0.5;
+        bgaudio.pause();
+        gameoveraudio.play();
     }
 }
 
